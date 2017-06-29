@@ -54,6 +54,7 @@ void ASaaya_UE4Character::SetupPlayerInputComponent(class UInputComponent* Playe
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ASaaya_UE4Character::MoveRight);
+	PlayerInputComponent->BindAxis("MoveForward", this, &ASaaya_UE4Character::MoveForward);
 
 	PlayerInputComponent->BindTouch(IE_Pressed, this, &ASaaya_UE4Character::TouchStarted);
 	PlayerInputComponent->BindTouch(IE_Released, this, &ASaaya_UE4Character::TouchStopped);
@@ -63,6 +64,12 @@ void ASaaya_UE4Character::MoveRight(float Value)
 {
 	// add movement in that direction
 	AddMovementInput(FVector(0.f,-1.f,0.f), Value);
+}
+
+void ASaaya_UE4Character::MoveForward(float Value)
+{
+	// add movement in that direction
+	AddMovementInput(FVector(-1.f, 0.f, 0.f), Value);
 }
 
 void ASaaya_UE4Character::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
