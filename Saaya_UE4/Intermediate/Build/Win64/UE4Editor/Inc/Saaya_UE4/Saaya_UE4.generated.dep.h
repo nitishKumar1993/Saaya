@@ -5,8 +5,23 @@
 ===========================================================================*/
 
 #include "GeneratedCppIncludes.h"
+#ifndef SAAYA_UE4_CameraViewSetArea_generated_h
+	#include "Game/CameraViewSetArea.h"
+#endif
+#ifndef SAAYA_UE4_GameLight_generated_h
+	#include "InGame/GameLight.h"
+#endif
+#ifndef SAAYA_UE4_GameManager_generated_h
+	#include "Game/GameManager.h"
+#endif
+#ifndef SAAYA_UE4_MovableGameObject_generated_h
+	#include "InGame/MovableGameObject.h"
+#endif
+#ifndef SAAYA_UE4_Player1AnimInstance_generated_h
+	#include "Animation/Player1AnimInstance.h"
+#endif
 #ifndef SAAYA_UE4_Saaya_UE4Character_generated_h
-	#include "Saaya_UE4Character.h"
+	#include "Players/Saaya_UE4Character.h"
 #endif
 #ifndef SAAYA_UE4_Saaya_UE4GameMode_generated_h
 	#include "Saaya_UE4GameMode.h"

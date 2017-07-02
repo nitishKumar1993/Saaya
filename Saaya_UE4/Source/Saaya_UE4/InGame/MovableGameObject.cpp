@@ -24,6 +24,7 @@ AMovableGameObject::AMovableGameObject()
 	TriggerComp->SetupAttachment(MeshComp);
 
 	PushSpeed = 1;
+	PlayerObjectGap = 100;
 	bKeyReady = false;
 	bStartMove = false;
 
@@ -79,11 +80,11 @@ void AMovableGameObject::Tick(float DeltaTime)
 
 		if (CurrentPushDirection == PushDirection::ForwardDirection || CurrentPushDirection == PushDirection::BackwardDirection)
 		{
-			player1->SetActorLocation(FVector(player1->GetActorLocation().X, Root->GetComponentLocation().Y, player1->GetActorLocation().Z));
+			player1->SetActorLocation(FVector( Root->GetComponentLocation().X + (CurrentPushDirection == PushDirection::ForwardDirection ? PlayerObjectGap : - PlayerObjectGap), Root->GetComponentLocation().Y, player1->GetActorLocation().Z));
 		}
 		else if (CurrentPushDirection == PushDirection::LeftDirection || CurrentPushDirection == PushDirection::RightDirection)
 		{
-			player1->SetActorLocation(FVector(Root->GetComponentLocation().X, player1->GetActorLocation().Y, player1->GetActorLocation().Z));
+			player1->SetActorLocation(FVector(Root->GetComponentLocation().X, Root->GetComponentLocation().Y + (CurrentPushDirection == PushDirection::RightDirection ? PlayerObjectGap : -PlayerObjectGap), player1->GetActorLocation().Z));
 		}
 
 		Root->MoveComponent(MoveVector * PushSpeed, FRotator(0, 0, 0), true);
@@ -94,7 +95,7 @@ void AMovableGameObject::Tick(float DeltaTime)
 
 void AMovableGameObject::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "Entered : " + OtherActor->GetName());
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "Entered : " + OtherActor->GetName());
 
 	ASaaya_UE4Character* Player = Cast<ASaaya_UE4Character>(OtherActor);
 
@@ -110,7 +111,7 @@ void AMovableGameObject::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, AA
 
 void AMovableGameObject::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "Exit : " + OtherActor->GetName());
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "Exit : " + OtherActor->GetName());
 
 	ASaaya_UE4Character* Player = Cast<ASaaya_UE4Character>(OtherActor);
 
@@ -129,7 +130,7 @@ void AMovableGameObject::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActo
 
 void AMovableGameObject::PushKeyDown()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "StartPushing");
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "StartPushing");
 	//CurrentPushDirection = direction;
 	
 	if (player1)
@@ -161,7 +162,7 @@ void AMovableGameObject::PushKeyDown()
 
 void AMovableGameObject::PushKeyUp()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "StopPushing");
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "StopPushing");
 
 	if (player1)
 	{

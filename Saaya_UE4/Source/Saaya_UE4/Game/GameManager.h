@@ -11,13 +11,13 @@ class SAAYA_UE4_API AGameManager : public AActor
 {
 	GENERATED_BODY()
 	
-public:	
+private:	
 	// Sets default values for this actor's properties
 	AGameManager();
 
 	int CurrentPlayerID;
 
-	void Switch();
+	APawn* CurrentPlayer;
 
 protected:
 	// Called when the game starts or when spawned
@@ -36,6 +36,8 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = Public_Variables)
 		AActor* m_gameCamera;
+
+	void Switch();
 
 	void MoveCameraToPos(USceneComponent* rootObj);
 
