@@ -33,6 +33,12 @@ void AGameManager::Tick(float DeltaTime)
 
 }
 
+void AGameManager::MoveCameraToPos(USceneComponent* rootObj)
+{
+	m_gameCamera->SetActorLocation(rootObj->GetComponentLocation());
+	m_gameCamera->SetActorRotation(rootObj->GetComponentRotation());
+}
+
 void AGameManager::Switch()
 {
 	APlayerController* controller = UGameplayStatics::GetPlayerController(GetWorld(), 0);

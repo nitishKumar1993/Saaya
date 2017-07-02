@@ -20,6 +20,9 @@ public:
 		bool IsInAir;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Default)
+		bool IsPushing;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Default)
 		float WalkValue;
 
 	//init and tick

@@ -37,4 +37,6 @@ public:
 	UPROPERTY(EditAnywhere, Category = Public_Variables)
 		AActor* m_gameCamera;
 
+	void MoveCameraToPos(USceneComponent* rootObj);
+
 };
