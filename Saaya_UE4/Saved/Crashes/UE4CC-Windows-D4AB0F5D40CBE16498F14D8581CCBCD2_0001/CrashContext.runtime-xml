@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FGenericCrashContext>
+	<RuntimeProperties>
+		<CrashVersion>3</CrashVersion>
+		<CrashGUID>UE4CC-Windows-D4AB0F5D40CBE16498F14D8581CCBCD2_0001</CrashGUID>
+		<ProcessId>26600</ProcessId>
+		<IsInternalBuild>false</IsInternalBuild>
+		<IsPerforceBuild>false</IsPerforceBuild>
+		<IsSourceDistribution>false</IsSourceDistribution>
+		<IsEnsure>true</IsEnsure>
+		<IsAssert>false</IsAssert>
+		<CrashType>Ensure</CrashType>
+		<SecondsSinceStart>1564</SecondsSinceStart>
+		<GameName>UE4-Saaya_UE4</GameName>
+		<ExecutableName>UE4Editor</ExecutableName>
+		<BuildConfiguration>Development</BuildConfiguration>
+		<GameSessionID />
+		<PlatformName>Windows</PlatformName>
+		<PlatformNameIni>Windows</PlatformNameIni>
+		<EngineMode>Editor</EngineMode>
+		<EngineModeEx>Dirty</EngineModeEx>
+		<DeploymentName />
+		<EngineVersion>4.16.1-3466753+++UE4+Release-4.16</EngineVersion>
+		<CommandLine>&quot;D:/Github Repos/Saaya/Saaya_UE4/Saaya_UE4.uproject&quot;</CommandLine>
+		<LanguageLCID>1033</LanguageLCID>
+		<AppDefaultLocale>en-US</AppDefaultLocale>
+		<BuildVersion>++UE4+Release-4.16-CL-3466753</BuildVersion>
+		<IsUE4Release>true</IsUE4Release>
+		<UserName>WalaDesignPC3</UserName>
+		<BaseDir>E:/SoftWares/UE4/UE_4.16/Engine/Binaries/Win64/</BaseDir>
+		<RootDir>E:/SoftWares/UE4/UE_4.16/</RootDir>
+		<MachineId>E53E22CA4F1919A91EDA83BB27F8C396</MachineId>
+		<LoginId>e53e22ca4f1919a91eda83bb27f8c396</LoginId>
+		<EpicAccountId>77fe8fa2a2c44dbfa3b6ef772c5da6bc</EpicAccountId>
+		<CallStack />
+		<SourceContext />
+		<UserDescription>Sent in the unattended mode</UserDescription>
+		<UserActivityHint>Layout=&quot;LevelEditorSelectionDetails&quot; Label=&quot;Details&quot; Content=SBox</UserActivityHint>
+		<ErrorMessage>Ensure condition failed: ParentActor != ActorPtr [File:D:\Build\++UE4+Release-4.16+Compile\Sync\Engine\Source\Editor\SceneOutliner\Private\ActorTreeItem.cpp] [Line: 245] &nl;Encountered an Actor attached to itself (CameraViewSetArea_15)&nl;</ErrorMessage>
+		<CrashDumpMode>0</CrashDumpMode>
+		<CrashReporterMessage />
+		<Misc.NumberOfCores>4</Misc.NumberOfCores>
+		<Misc.NumberOfCoresIncludingHyperthreads>8</Misc.NumberOfCoresIncludingHyperthreads>
+		<Misc.Is64bitOperatingSystem>1</Misc.Is64bitOperatingSystem>
+		<Misc.CPUVendor>GenuineIntel</Misc.CPUVendor>
+		<Misc.CPUBrand>Intel(R) Core(TM) i7-7700 CPU @ 3.60GHz</Misc.CPUBrand>
+		<Misc.PrimaryGPUBrand>NVIDIA GeForce GTX 1060 6GB</Misc.PrimaryGPUBrand>
+		<Misc.OSVersionMajor>Windows 10</Misc.OSVersionMajor>
+		<Misc.OSVersionMinor />
+		<MemoryStats.TotalPhysical>17136574464</MemoryStats.TotalPhysical>
+		<MemoryStats.TotalVirtual>140737488224256</MemoryStats.TotalVirtual>
+		<MemoryStats.PageSize>4096</MemoryStats.PageSize>
+		<MemoryStats.TotalPhysicalGB>16</MemoryStats.TotalPhysicalGB>
+		<MemoryStats.AvailablePhysical>9014865920</MemoryStats.AvailablePhysical>
+		<MemoryStats.AvailableVirtual>140734594711552</MemoryStats.AvailableVirtual>
+		<MemoryStats.UsedPhysical>864694272</MemoryStats.UsedPhysical>
+		<MemoryStats.PeakUsedPhysical>1244073984</MemoryStats.PeakUsedPhysical>
+		<MemoryStats.UsedVirtual>1919336448</MemoryStats.UsedVirtual>
+		<MemoryStats.PeakUsedVirtual>2064232448</MemoryStats.PeakUsedVirtual>
+		<MemoryStats.bIsOOM>0</MemoryStats.bIsOOM>
+		<MemoryStats.OOMAllocationSize>0</MemoryStats.OOMAllocationSize>
+		<MemoryStats.OOMAllocationAlignment>0</MemoryStats.OOMAllocationAlignment>
+		<TimeOfCrash>636344124890780000</TimeOfCrash>
+		<bAllowToBeContacted>1</bAllowToBeContacted>
+		<PlatformFullName>Win64 [Windows 10  64b]</PlatformFullName>
+		<CrashReportClientVersion>1.0</CrashReportClientVersion>
+	</RuntimeProperties>
+	<PlatformProperties>
+		<PlatformIsRunningWindows>1</PlatformIsRunningWindows>
+		<PlatformCallbackResult>0</PlatformCallbackResult>
+	</PlatformProperties>
+</FGenericCrashContext>

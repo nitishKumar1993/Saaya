@@ -43,9 +43,9 @@ void AGameManager::Switch()
 {
 	APlayerController* controller = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 	controller->UnPossess();
-	ASaaya_UE4Character* CurrentCharacter = case<ASaaya_UE4Character>(CurrentPlayer);
+	//ASaaya_UE4Character* CurrentCharacter = case<ASaaya_UE4Character>(CurrentPlayer);
 	CurrentPlayer = (CurrentPlayerID == 1 ? m_player1 : m_player2);
-	controller->Possess(currentPlayer);
+	controller->Possess(CurrentPlayer);
 	CurrentPlayerID = (CurrentPlayerID == 1 ? 2 : 1);
 
 	controller->SetViewTarget(m_gameCamera);
