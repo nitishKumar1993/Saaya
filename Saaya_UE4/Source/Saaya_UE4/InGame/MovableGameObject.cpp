@@ -89,8 +89,6 @@ void AMovableGameObject::Tick(float DeltaTime)
 
 		Root->MoveComponent(MoveVector * PushSpeed, FRotator(0, 0, 0), true);
 	}
-
-	//GetWorldTimerManager().SetTimer(PushResetTimer, &AMovableGameObject::StopPushing, 1.0f, true);
 }
 
 void AMovableGameObject::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
@@ -105,6 +103,8 @@ void AMovableGameObject::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, AA
 		{
 			player1 = Cast<ACharacter>(OtherActor);
 			bStartMove = true;
+
+			MeshComp->SetRenderCustomDepth(true);
 		}
 	}
 }
@@ -124,6 +124,8 @@ void AMovableGameObject::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActo
 				player1Anim->IsPushing = false;
 
 			bStartMove = false;
+
+			MeshComp->SetRenderCustomDepth(false);
 		}
 	}
 }
@@ -136,7 +138,6 @@ void AMovableGameObject::PushKeyDown()
 	if (player1)
 	{
 		int playerRotation = (int)(player1->GetActorRotation().Yaw > 0 ? ceil(player1->GetActorRotation().Yaw) : floor(player1->GetActorRotation().Yaw));
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::FromInt(playerRotation));
 
 		if (playerRotation == 0)
 		{
@@ -155,7 +156,6 @@ void AMovableGameObject::PushKeyDown()
 			CurrentPushDirection = PushDirection::LeftDirection;
 		}
 	}
-
 
 	bKeyReady = true;
 }

@@ -10,6 +10,7 @@
 #include "Game/GameManager.h"
 #include "Game/CameraViewSetArea.h"
 #include "Animation/Player1AnimInstance.h"
+#include "Animation/Player2AnimInstance.h"
 #include "InGame/MovableGameObject.h"
 
 ASaaya_UE4Character::ASaaya_UE4Character()
@@ -36,11 +37,6 @@ ASaaya_UE4Character::ASaaya_UE4Character()
 	GetCharacterMovement()->MaxWalkSpeed = 600.f;
 	GetCharacterMovement()->MaxFlySpeed = 600.f;
 
-	SelectionIndicatorMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SelectionIndicatorMesh"));
-	SelectionIndicatorMesh->bGenerateOverlapEvents = false;
-	SelectionIndicatorMesh->AttachToComponent(GetCapsuleComponent(), FAttachmentTransformRules::SnapToTargetNotIncludingScale);
-	SelectionIndicatorMesh->SetRelativeLocation(FVector(0, 0, 0));
-
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
 }
@@ -49,12 +45,17 @@ void ASaaya_UE4Character::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, A
 {
 	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red,  "Entered : " + OtherActor->GetName());
 
-	if (OtherActor->GetName().Contains(FString("CameraViewSetArea")) && GameManagerActor != NULL)
+	ASaaya_UE4Character* activeCharacter = Cast<ASaaya_UE4Character>(UGameplayStatics::GetPlayerController(GetWorld(), 0));
+
+	if ((OtherActor->GetName().Contains(FString("CameraViewSetArea")) && GameManagerActor != NULL) )
 	{
 		ACameraViewSetArea* cameraViewArea = Cast<ACameraViewSetArea>(OtherActor);
 
 		AGameManager* GameManager = Cast<AGameManager>(GameManagerActor);
-		GameManager->MoveCameraToPos(cameraViewArea->CameraHandle);
+		
+		ASaaya_UE4Character* ActiveCharacter = Cast<ASaaya_UE4Character>(GameManager->CurrentPlayer);
+		if(this == ActiveCharacter)
+			GameManager->MoveCameraTo(cameraViewArea->CameraHandle);
 	}
 }
 
@@ -86,8 +87,9 @@ void ASaaya_UE4Character::Tick(float DeltaTime)
 
 void ASaaya_UE4Character::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
-	// set up gameplay key bindings
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ASaaya_UE4Character::Jump);
+	// set up gameplay key bindings'
+	if(CurrentPlayerType == PlayerType::Player1)
+		PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ASaaya_UE4Character::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ASaaya_UE4Character::MoveRight);
 	PlayerInputComponent->BindAxis("MoveForward", this, &ASaaya_UE4Character::MoveForward);
@@ -111,7 +113,7 @@ void ASaaya_UE4Character::Jump()
 
 void ASaaya_UE4Character::MoveRight(float Value)
 {
-	if (!IsPlayerMovingForwardBackward)
+	if (CurrentPlayerType == PlayerType::Player1)
 	{
 		UPlayer1AnimInstance * Animation = Cast<UPlayer1AnimInstance>(GetMesh()->GetAnimInstance());
 
@@ -127,26 +129,48 @@ void ASaaya_UE4Character::MoveRight(float Value)
 			{
 				//Animation->WalkValue = abs(Value);
 				Animation->WalkValue = 0.3f;
-				IsPlayerMovingRightLeft = true;
 			}
 			else
 			{
 				Animation->WalkValue = 0;
-				IsPlayerMovingRightLeft = false;
+			}
+		}
+	}
+	else
+	{
+		UPlayer2AnimInstance * Animation = Cast<UPlayer2AnimInstance>(GetMesh()->GetAnimInstance());
+
+		if (!Animation)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "ERROR: Anim Instance not loaded.");
+		}
+		else
+		{
+			Animation->IsInAir = GetCharacterMovement()->IsFalling();
+			//Animation->WalkValue = abs(Value);
+			if (abs(Value) > 0)
+			{
+				//Animation->WalkValue = abs(Value);
+				Animation->WalkValue = 0.3f;
+			}
+			else
+			{
+				Animation->WalkValue = 0;
 			}
 		}
 
-		if (!GetCharacterMovement()->IsFalling())
-		{
-			// add movement in that direction
-			AddMovementInput(FVector(0.f, -1.f, 0.f), Value);
-		}
+	}
+
+	if (!GetCharacterMovement()->IsFalling())
+	{
+		// add movement in that direction
+		AddMovementInput(FVector(0.f, -1.f, 0.f), Value);
 	}
 }
 
 void ASaaya_UE4Character::MoveForward(float Value)
 {
-	if (!IsPlayerMovingRightLeft)
+	if (CurrentPlayerType == PlayerType::Player1)
 	{
 		UPlayer1AnimInstance * Animation = Cast<UPlayer1AnimInstance>(GetMesh()->GetAnimInstance());
 
@@ -160,19 +184,31 @@ void ASaaya_UE4Character::MoveForward(float Value)
 			{
 				//Animation->WalkValue = abs(Value);
 				Animation->WalkValue = 0.3f;
-				IsPlayerMovingForwardBackward = true;
-			}
-			else
-			{
-				IsPlayerMovingForwardBackward = false;
 			}
 		}
+	}
+	else
+	{
+		UPlayer2AnimInstance * Animation = Cast<UPlayer2AnimInstance>(GetMesh()->GetAnimInstance());
 
-		if (!GetCharacterMovement()->IsFalling())
+		if (!Animation)
 		{
-			// add movement in that direction
-			AddMovementInput(FVector(-1.f, 0.f, 0.f), Value);
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "ERROR: Anim Instance not loaded.");
 		}
+		else
+		{
+			if (abs(Value) > 0)
+			{
+				//Animation->WalkValue = abs(Value);
+				Animation->WalkValue = 0.3f;
+			}
+		}
+	}
+
+	if (!GetCharacterMovement()->IsFalling())
+	{
+		// add movement in that direction
+		AddMovementInput(FVector(-1.f, 0.f, 0.f), Value);
 	}
 }
 

@@ -41,6 +41,13 @@ void EmptyLinkFunctionForGeneratedCode1Saaya_UE4() {}
 	SAAYA_UE4_API class UClass* Z_Construct_UClass_AMovableGameObject();
 	SAAYA_UE4_API class UClass* Z_Construct_UClass_UPlayer1AnimInstance_NoRegister();
 	SAAYA_UE4_API class UClass* Z_Construct_UClass_UPlayer1AnimInstance();
+	SAAYA_UE4_API class UClass* Z_Construct_UClass_UPlayer2AnimInstance_NoRegister();
+	SAAYA_UE4_API class UClass* Z_Construct_UClass_UPlayer2AnimInstance();
+	SAAYA_UE4_API class UEnum* Z_Construct_UEnum_Saaya_UE4_Possesabletype();
+	SAAYA_UE4_API class UFunction* Z_Construct_UFunction_APossesableGameObject_OnOverlapBegin();
+	SAAYA_UE4_API class UFunction* Z_Construct_UFunction_APossesableGameObject_OnOverlapEnd();
+	SAAYA_UE4_API class UClass* Z_Construct_UClass_APossesableGameObject_NoRegister();
+	SAAYA_UE4_API class UClass* Z_Construct_UClass_APossesableGameObject();
 	SAAYA_UE4_API class UEnum* Z_Construct_UEnum_Saaya_UE4_PlayerType();
 	SAAYA_UE4_API class UFunction* Z_Construct_UFunction_ASaaya_UE4Character_OnOverlapBegin();
 	SAAYA_UE4_API class UFunction* Z_Construct_UFunction_ASaaya_UE4Character_OnOverlapEnd();
@@ -392,6 +399,223 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	IMPLEMENT_CLASS(UPlayer1AnimInstance, 71720633);
 	static FCompiledInDefer Z_CompiledInDefer_UClass_UPlayer1AnimInstance(Z_Construct_UClass_UPlayer1AnimInstance, &UPlayer1AnimInstance::StaticClass, TEXT("/Script/Saaya_UE4"), TEXT("UPlayer1AnimInstance"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UPlayer1AnimInstance);
+	void UPlayer2AnimInstance::StaticRegisterNativesUPlayer2AnimInstance()
+	{
+	}
+	UClass* Z_Construct_UClass_UPlayer2AnimInstance_NoRegister()
+	{
+		return UPlayer2AnimInstance::StaticClass();
+	}
+	UClass* Z_Construct_UClass_UPlayer2AnimInstance()
+	{
+		static UClass* OuterClass = NULL;
+		if (!OuterClass)
+		{
+			Z_Construct_UClass_UAnimInstance();
+			Z_Construct_UPackage__Script_Saaya_UE4();
+			OuterClass = UPlayer2AnimInstance::StaticClass();
+			if (!(OuterClass->ClassFlags & CLASS_Constructed))
+			{
+				UObjectForceRegistration(OuterClass);
+				OuterClass->ClassFlags |= 0x20900088;
+
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+				UProperty* NewProp_WalkValue = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("WalkValue"), RF_Public|RF_Transient|RF_MarkAsNative) UFloatProperty(CPP_PROPERTY_BASE(WalkValue, UPlayer2AnimInstance), 0x0010000000000005);
+				CPP_BOOL_PROPERTY_BITMASK_STRUCT(IsInAir, UPlayer2AnimInstance, bool);
+				UProperty* NewProp_IsInAir = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("IsInAir"), RF_Public|RF_Transient|RF_MarkAsNative) UBoolProperty(FObjectInitializer(), EC_CppProperty, CPP_BOOL_PROPERTY_OFFSET(IsInAir, UPlayer2AnimInstance), 0x0010000000000005, CPP_BOOL_PROPERTY_BITMASK(IsInAir, UPlayer2AnimInstance), sizeof(bool), true);
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+				static TCppClassTypeInfo<TCppClassTypeTraits<UPlayer2AnimInstance> > StaticCppClassTypeInfo;
+				OuterClass->SetCppTypeInfo(&StaticCppClassTypeInfo);
+				OuterClass->StaticLink();
+#if WITH_METADATA
+				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
+				MetaData->SetValue(OuterClass, TEXT("BlueprintType"), TEXT("true"));
+				MetaData->SetValue(OuterClass, TEXT("HideCategories"), TEXT("AnimInstance AnimInstance"));
+				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("Animation/Player2AnimInstance.h"));
+				MetaData->SetValue(OuterClass, TEXT("IsBlueprintBase"), TEXT("true"));
+				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("Animation/Player2AnimInstance.h"));
+				MetaData->SetValue(NewProp_WalkValue, TEXT("Category"), TEXT("Default"));
+				MetaData->SetValue(NewProp_WalkValue, TEXT("ModuleRelativePath"), TEXT("Animation/Player2AnimInstance.h"));
+				MetaData->SetValue(NewProp_IsInAir, TEXT("Category"), TEXT("Default"));
+				MetaData->SetValue(NewProp_IsInAir, TEXT("ModuleRelativePath"), TEXT("Animation/Player2AnimInstance.h"));
+				MetaData->SetValue(NewProp_IsInAir, TEXT("ToolTip"), TEXT("Is Moving"));
+#endif
+			}
+		}
+		check(OuterClass->GetClass());
+		return OuterClass;
+	}
+	IMPLEMENT_CLASS(UPlayer2AnimInstance, 1897134646);
+	static FCompiledInDefer Z_CompiledInDefer_UClass_UPlayer2AnimInstance(Z_Construct_UClass_UPlayer2AnimInstance, &UPlayer2AnimInstance::StaticClass, TEXT("/Script/Saaya_UE4"), TEXT("UPlayer2AnimInstance"), false, nullptr, nullptr, nullptr);
+	DEFINE_VTABLE_PTR_HELPER_CTOR(UPlayer2AnimInstance);
+static UEnum* Possesabletype_StaticEnum()
+{
+	extern SAAYA_UE4_API class UPackage* Z_Construct_UPackage__Script_Saaya_UE4();
+	static UEnum* Singleton = nullptr;
+	if (!Singleton)
+	{
+		extern SAAYA_UE4_API class UEnum* Z_Construct_UEnum_Saaya_UE4_Possesabletype();
+		Singleton = GetStaticEnum(Z_Construct_UEnum_Saaya_UE4_Possesabletype, Z_Construct_UPackage__Script_Saaya_UE4(), TEXT("Possesabletype"));
+	}
+	return Singleton;
+}
+static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_Possesabletype(Possesabletype_StaticEnum, TEXT("/Script/Saaya_UE4"), TEXT("Possesabletype"), false, nullptr, nullptr);
+	UEnum* Z_Construct_UEnum_Saaya_UE4_Possesabletype()
+	{
+		UPackage* Outer=Z_Construct_UPackage__Script_Saaya_UE4();
+		extern uint32 Get_Z_Construct_UEnum_Saaya_UE4_Possesabletype_CRC();
+		static UEnum* ReturnEnum = FindExistingEnumIfHotReloadOrDynamic(Outer, TEXT("Possesabletype"), 0, Get_Z_Construct_UEnum_Saaya_UE4_Possesabletype_CRC(), false);
+		if (!ReturnEnum)
+		{
+			ReturnEnum = new(EC_InternalUseOnlyConstructor, Outer, TEXT("Possesabletype"), RF_Public|RF_Transient|RF_MarkAsNative) UEnum(FObjectInitializer());
+			TArray<TPair<FName, int64>> EnumNames;
+			EnumNames.Emplace(TEXT("Possesabletype::Crane"), 0);
+			EnumNames.Emplace(TEXT("Possesabletype::Lamp"), 1);
+			EnumNames.Emplace(TEXT("Possesabletype::Possesabletype_MAX"), 2);
+			ReturnEnum->SetEnums(EnumNames, UEnum::ECppForm::EnumClass);
+			ReturnEnum->CppType = TEXT("Possesabletype");
+#if WITH_METADATA
+			UMetaData* MetaData = ReturnEnum->GetOutermost()->GetMetaData();
+			MetaData->SetValue(ReturnEnum, TEXT("BlueprintType"), TEXT("true"));
+			MetaData->SetValue(ReturnEnum, TEXT("Crane.DisplayName"), TEXT("Crane"));
+			MetaData->SetValue(ReturnEnum, TEXT("Lamp.DisplayName"), TEXT("Lamp"));
+			MetaData->SetValue(ReturnEnum, TEXT("ModuleRelativePath"), TEXT("InGame/PossesableGameObject.h"));
+			MetaData->SetValue(ReturnEnum, TEXT("ToolTip"), TEXT("\"BlueprintType\" is essential to include"));
+#endif
+		}
+		return ReturnEnum;
+	}
+	uint32 Get_Z_Construct_UEnum_Saaya_UE4_Possesabletype_CRC() { return 2228618161U; }
+	void APossesableGameObject::StaticRegisterNativesAPossesableGameObject()
+	{
+		UClass* Class = APossesableGameObject::StaticClass();
+		static const TNameNativePtrPair<ANSICHAR> AnsiFuncs[] = {
+			{ "OnOverlapBegin", (Native)&APossesableGameObject::execOnOverlapBegin },
+			{ "OnOverlapEnd", (Native)&APossesableGameObject::execOnOverlapEnd },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, AnsiFuncs, 2);
+	}
+	UFunction* Z_Construct_UFunction_APossesableGameObject_OnOverlapBegin()
+	{
+		struct PossesableGameObject_eventOnOverlapBegin_Parms
+		{
+			UPrimitiveComponent* OverlappedComp;
+			AActor* OtherActor;
+			UPrimitiveComponent* OtherComp;
+			int32 OtherBodyIndex;
+			bool bFromSweep;
+			FHitResult SweepResult;
+		};
+		UObject* Outer=Z_Construct_UClass_APossesableGameObject();
+		static UFunction* ReturnFunction = NULL;
+		if (!ReturnFunction)
+		{
+			ReturnFunction = new(EC_InternalUseOnlyConstructor, Outer, TEXT("OnOverlapBegin"), RF_Public|RF_Transient|RF_MarkAsNative) UFunction(FObjectInitializer(), NULL, 0x00420401, 65535, sizeof(PossesableGameObject_eventOnOverlapBegin_Parms));
+			UProperty* NewProp_SweepResult = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("SweepResult"), RF_Public|RF_Transient|RF_MarkAsNative) UStructProperty(CPP_PROPERTY_BASE(SweepResult, PossesableGameObject_eventOnOverlapBegin_Parms), 0x0010008008000182, Z_Construct_UScriptStruct_FHitResult());
+			CPP_BOOL_PROPERTY_BITMASK_STRUCT(bFromSweep, PossesableGameObject_eventOnOverlapBegin_Parms, bool);
+			UProperty* NewProp_bFromSweep = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("bFromSweep"), RF_Public|RF_Transient|RF_MarkAsNative) UBoolProperty(FObjectInitializer(), EC_CppProperty, CPP_BOOL_PROPERTY_OFFSET(bFromSweep, PossesableGameObject_eventOnOverlapBegin_Parms), 0x0010000000000080, CPP_BOOL_PROPERTY_BITMASK(bFromSweep, PossesableGameObject_eventOnOverlapBegin_Parms), sizeof(bool), true);
+			UProperty* NewProp_OtherBodyIndex = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OtherBodyIndex"), RF_Public|RF_Transient|RF_MarkAsNative) UIntProperty(CPP_PROPERTY_BASE(OtherBodyIndex, PossesableGameObject_eventOnOverlapBegin_Parms), 0x0010000000000080);
+			UProperty* NewProp_OtherComp = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OtherComp"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(OtherComp, PossesableGameObject_eventOnOverlapBegin_Parms), 0x0010000000080080, Z_Construct_UClass_UPrimitiveComponent_NoRegister());
+			UProperty* NewProp_OtherActor = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OtherActor"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(OtherActor, PossesableGameObject_eventOnOverlapBegin_Parms), 0x0010000000000080, Z_Construct_UClass_AActor_NoRegister());
+			UProperty* NewProp_OverlappedComp = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OverlappedComp"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(OverlappedComp, PossesableGameObject_eventOnOverlapBegin_Parms), 0x0010000000080080, Z_Construct_UClass_UPrimitiveComponent_NoRegister());
+			ReturnFunction->Bind();
+			ReturnFunction->StaticLink();
+#if WITH_METADATA
+			UMetaData* MetaData = ReturnFunction->GetOutermost()->GetMetaData();
+			MetaData->SetValue(ReturnFunction, TEXT("ModuleRelativePath"), TEXT("InGame/PossesableGameObject.h"));
+			MetaData->SetValue(NewProp_SweepResult, TEXT("NativeConst"), TEXT(""));
+			MetaData->SetValue(NewProp_OtherComp, TEXT("EditInline"), TEXT("true"));
+			MetaData->SetValue(NewProp_OverlappedComp, TEXT("EditInline"), TEXT("true"));
+#endif
+		}
+		return ReturnFunction;
+	}
+	UFunction* Z_Construct_UFunction_APossesableGameObject_OnOverlapEnd()
+	{
+		struct PossesableGameObject_eventOnOverlapEnd_Parms
+		{
+			UPrimitiveComponent* OverlappedComp;
+			AActor* OtherActor;
+			UPrimitiveComponent* OtherComp;
+			int32 OtherBodyIndex;
+		};
+		UObject* Outer=Z_Construct_UClass_APossesableGameObject();
+		static UFunction* ReturnFunction = NULL;
+		if (!ReturnFunction)
+		{
+			ReturnFunction = new(EC_InternalUseOnlyConstructor, Outer, TEXT("OnOverlapEnd"), RF_Public|RF_Transient|RF_MarkAsNative) UFunction(FObjectInitializer(), NULL, 0x00020401, 65535, sizeof(PossesableGameObject_eventOnOverlapEnd_Parms));
+			UProperty* NewProp_OtherBodyIndex = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OtherBodyIndex"), RF_Public|RF_Transient|RF_MarkAsNative) UIntProperty(CPP_PROPERTY_BASE(OtherBodyIndex, PossesableGameObject_eventOnOverlapEnd_Parms), 0x0010000000000080);
+			UProperty* NewProp_OtherComp = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OtherComp"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(OtherComp, PossesableGameObject_eventOnOverlapEnd_Parms), 0x0010000000080080, Z_Construct_UClass_UPrimitiveComponent_NoRegister());
+			UProperty* NewProp_OtherActor = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OtherActor"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(OtherActor, PossesableGameObject_eventOnOverlapEnd_Parms), 0x0010000000000080, Z_Construct_UClass_AActor_NoRegister());
+			UProperty* NewProp_OverlappedComp = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OverlappedComp"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(OverlappedComp, PossesableGameObject_eventOnOverlapEnd_Parms), 0x0010000000080080, Z_Construct_UClass_UPrimitiveComponent_NoRegister());
+			ReturnFunction->Bind();
+			ReturnFunction->StaticLink();
+#if WITH_METADATA
+			UMetaData* MetaData = ReturnFunction->GetOutermost()->GetMetaData();
+			MetaData->SetValue(ReturnFunction, TEXT("ModuleRelativePath"), TEXT("InGame/PossesableGameObject.h"));
+			MetaData->SetValue(NewProp_OtherComp, TEXT("EditInline"), TEXT("true"));
+			MetaData->SetValue(NewProp_OverlappedComp, TEXT("EditInline"), TEXT("true"));
+#endif
+		}
+		return ReturnFunction;
+	}
+	UClass* Z_Construct_UClass_APossesableGameObject_NoRegister()
+	{
+		return APossesableGameObject::StaticClass();
+	}
+	UClass* Z_Construct_UClass_APossesableGameObject()
+	{
+		static UClass* OuterClass = NULL;
+		if (!OuterClass)
+		{
+			Z_Construct_UClass_AActor();
+			Z_Construct_UPackage__Script_Saaya_UE4();
+			OuterClass = APossesableGameObject::StaticClass();
+			if (!(OuterClass->ClassFlags & CLASS_Constructed))
+			{
+				UObjectForceRegistration(OuterClass);
+				OuterClass->ClassFlags |= 0x20900080;
+
+				OuterClass->LinkChild(Z_Construct_UFunction_APossesableGameObject_OnOverlapBegin());
+				OuterClass->LinkChild(Z_Construct_UFunction_APossesableGameObject_OnOverlapEnd());
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+				UProperty* NewProp_TriggerComp = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("TriggerComp"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(TriggerComp, APossesableGameObject), 0x0010000000080009, Z_Construct_UClass_UBoxComponent_NoRegister());
+				UProperty* NewProp_MeshComp = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("MeshComp"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(MeshComp, APossesableGameObject), 0x0010000000080009, Z_Construct_UClass_UStaticMeshComponent_NoRegister());
+				UProperty* NewProp_Root = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("Root"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(Root, APossesableGameObject), 0x0010000000080009, Z_Construct_UClass_USceneComponent_NoRegister());
+				UProperty* NewProp_CurrentPossableRType = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("CurrentPossableRType"), RF_Public|RF_Transient|RF_MarkAsNative) UEnumProperty(CPP_PROPERTY_BASE(CurrentPossableRType, APossesableGameObject), 0x0010000000000005, Z_Construct_UEnum_Saaya_UE4_Possesabletype());
+				UProperty* NewProp_CurrentPossableRType_Underlying = new(EC_InternalUseOnlyConstructor, NewProp_CurrentPossableRType, TEXT("UnderlyingType"), RF_Public|RF_Transient|RF_MarkAsNative) UByteProperty(FObjectInitializer(), EC_CppProperty, 0, 0x0000000000000000);
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_APossesableGameObject_OnOverlapBegin(), "OnOverlapBegin"); // 3075611461
+				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_APossesableGameObject_OnOverlapEnd(), "OnOverlapEnd"); // 3850471663
+				static TCppClassTypeInfo<TCppClassTypeTraits<APossesableGameObject> > StaticCppClassTypeInfo;
+				OuterClass->SetCppTypeInfo(&StaticCppClassTypeInfo);
+				OuterClass->StaticLink();
+#if WITH_METADATA
+				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
+				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("InGame/PossesableGameObject.h"));
+				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("InGame/PossesableGameObject.h"));
+				MetaData->SetValue(NewProp_TriggerComp, TEXT("Category"), TEXT("PossesableGameObject"));
+				MetaData->SetValue(NewProp_TriggerComp, TEXT("EditInline"), TEXT("true"));
+				MetaData->SetValue(NewProp_TriggerComp, TEXT("ModuleRelativePath"), TEXT("InGame/PossesableGameObject.h"));
+				MetaData->SetValue(NewProp_MeshComp, TEXT("Category"), TEXT("PossesableGameObject"));
+				MetaData->SetValue(NewProp_MeshComp, TEXT("EditInline"), TEXT("true"));
+				MetaData->SetValue(NewProp_MeshComp, TEXT("ModuleRelativePath"), TEXT("InGame/PossesableGameObject.h"));
+				MetaData->SetValue(NewProp_Root, TEXT("Category"), TEXT("PossesableGameObject"));
+				MetaData->SetValue(NewProp_Root, TEXT("EditInline"), TEXT("true"));
+				MetaData->SetValue(NewProp_Root, TEXT("ModuleRelativePath"), TEXT("InGame/PossesableGameObject.h"));
+				MetaData->SetValue(NewProp_CurrentPossableRType, TEXT("Category"), TEXT("Public_Variables"));
+				MetaData->SetValue(NewProp_CurrentPossableRType, TEXT("ModuleRelativePath"), TEXT("InGame/PossesableGameObject.h"));
+#endif
+			}
+		}
+		check(OuterClass->GetClass());
+		return OuterClass;
+	}
+	IMPLEMENT_CLASS(APossesableGameObject, 4190486162);
+	static FCompiledInDefer Z_CompiledInDefer_UClass_APossesableGameObject(Z_Construct_UClass_APossesableGameObject, &APossesableGameObject::StaticClass, TEXT("/Script/Saaya_UE4"), TEXT("APossesableGameObject"), false, nullptr, nullptr, nullptr);
+	DEFINE_VTABLE_PTR_HELPER_CTOR(APossesableGameObject);
 static UEnum* PlayerType_StaticEnum()
 {
 	extern SAAYA_UE4_API class UPackage* Z_Construct_UPackage__Script_Saaya_UE4();
@@ -558,7 +782,6 @@ static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_PlayerType(PlayerType_St
 				OuterClass->LinkChild(Z_Construct_UFunction_ASaaya_UE4Character_OnPlayerHit());
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-				UProperty* NewProp_SelectionIndicatorMesh = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("SelectionIndicatorMesh"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(SelectionIndicatorMesh, ASaaya_UE4Character), 0x001000000008000d, Z_Construct_UClass_UStaticMeshComponent_NoRegister());
 				UProperty* NewProp_CurrentPlayerType = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("CurrentPlayerType"), RF_Public|RF_Transient|RF_MarkAsNative) UEnumProperty(CPP_PROPERTY_BASE(CurrentPlayerType, ASaaya_UE4Character), 0x0010000000000005, Z_Construct_UEnum_Saaya_UE4_PlayerType());
 				UProperty* NewProp_CurrentPlayerType_Underlying = new(EC_InternalUseOnlyConstructor, NewProp_CurrentPlayerType, TEXT("UnderlyingType"), RF_Public|RF_Transient|RF_MarkAsNative) UByteProperty(FObjectInitializer(), EC_CppProperty, 0, 0x0000000000000000);
 				UProperty* NewProp_GameManagerActor = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("GameManagerActor"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(GameManagerActor, ASaaya_UE4Character), 0x0010000000000001, Z_Construct_UClass_AActor_NoRegister());
@@ -575,9 +798,6 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 				MetaData->SetValue(OuterClass, TEXT("HideCategories"), TEXT("Navigation"));
 				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("Players/Saaya_UE4Character.h"));
 				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("Players/Saaya_UE4Character.h"));
-				MetaData->SetValue(NewProp_SelectionIndicatorMesh, TEXT("Category"), TEXT("Public_Variables"));
-				MetaData->SetValue(NewProp_SelectionIndicatorMesh, TEXT("EditInline"), TEXT("true"));
-				MetaData->SetValue(NewProp_SelectionIndicatorMesh, TEXT("ModuleRelativePath"), TEXT("Players/Saaya_UE4Character.h"));
 				MetaData->SetValue(NewProp_CurrentPlayerType, TEXT("Category"), TEXT("Public_Variables"));
 				MetaData->SetValue(NewProp_CurrentPlayerType, TEXT("ModuleRelativePath"), TEXT("Players/Saaya_UE4Character.h"));
 				MetaData->SetValue(NewProp_GameManagerActor, TEXT("Category"), TEXT("Saaya_UE4Character"));
@@ -588,7 +808,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 		check(OuterClass->GetClass());
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASaaya_UE4Character, 2917102671);
+	IMPLEMENT_CLASS(ASaaya_UE4Character, 2225942446);
 	static FCompiledInDefer Z_CompiledInDefer_UClass_ASaaya_UE4Character(Z_Construct_UClass_ASaaya_UE4Character, &ASaaya_UE4Character::StaticClass, TEXT("/Script/Saaya_UE4"), TEXT("ASaaya_UE4Character"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ASaaya_UE4Character);
 	void ASaaya_UE4GameMode::StaticRegisterNativesASaaya_UE4GameMode()
@@ -638,8 +858,8 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 			ReturnPackage = CastChecked<UPackage>(StaticFindObjectFast(UPackage::StaticClass(), nullptr, FName(TEXT("/Script/Saaya_UE4")), false, false));
 			ReturnPackage->SetPackageFlags(PKG_CompiledIn | 0x00000000);
 			FGuid Guid;
-			Guid.A = 0xB948DE09;
-			Guid.B = 0x83386937;
+			Guid.A = 0x67FE3F93;
+			Guid.B = 0x1778FC96;
 			Guid.C = 0x00000000;
 			Guid.D = 0x00000000;
 			ReturnPackage->SetGuid(Guid);

@@ -20,6 +20,12 @@
 #ifndef SAAYA_UE4_Player1AnimInstance_generated_h
 	#include "Animation/Player1AnimInstance.h"
 #endif
+#ifndef SAAYA_UE4_Player2AnimInstance_generated_h
+	#include "Animation/Player2AnimInstance.h"
+#endif
+#ifndef SAAYA_UE4_PossesableGameObject_generated_h
+	#include "InGame/PossesableGameObject.h"
+#endif
 #ifndef SAAYA_UE4_Saaya_UE4Character_generated_h
 	#include "Players/Saaya_UE4Character.h"
 #endif

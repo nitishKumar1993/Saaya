@@ -50,14 +50,9 @@ public:
 
 	ASaaya_UE4Character();
 
-	bool IsPlayerMovingRightLeft;
-	bool IsPlayerMovingForwardBackward;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Public_Variables)
 		PlayerType CurrentPlayerType;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Public_Variables)
-		UStaticMeshComponent* SelectionIndicatorMesh;
 
 	UFUNCTION()
 		void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);

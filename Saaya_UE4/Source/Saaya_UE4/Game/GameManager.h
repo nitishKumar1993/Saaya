@@ -17,7 +17,10 @@ private:
 
 	int CurrentPlayerID;
 
-	APawn* CurrentPlayer;
+	bool MoveCamera = true;
+
+	USceneComponent* NextCameraMovePosHandle;
+
 
 protected:
 	// Called when the game starts or when spawned
@@ -26,7 +29,6 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
 	
 	UPROPERTY(EditAnywhere, Category = Public_Variables)
 		APawn* m_player1;
@@ -34,11 +36,13 @@ public:
 	UPROPERTY(EditAnywhere, Category = Public_Variables)
 		APawn* m_player2;
 
+	APawn* CurrentPlayer;
+
 	UPROPERTY(EditAnywhere, Category = Public_Variables)
 		AActor* m_gameCamera;
 
 	void Switch();
 
-	void MoveCameraToPos(USceneComponent* rootObj);
+	void MoveCameraTo(USceneComponent* Pos);
 
 };

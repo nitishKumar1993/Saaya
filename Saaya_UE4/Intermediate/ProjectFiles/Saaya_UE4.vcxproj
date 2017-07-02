@@ -422,6 +422,8 @@
 		<ClInclude Include="..\..\Source\Saaya_UE4\Saaya_UE4GameMode.h" />
 		<ClCompile Include="..\..\Source\Saaya_UE4\Animation\Player1AnimInstance.cpp" />
 		<ClInclude Include="..\..\Source\Saaya_UE4\Animation\Player1AnimInstance.h" />
+		<ClCompile Include="..\..\Source\Saaya_UE4\Animation\Player2AnimInstance.cpp" />
+		<ClInclude Include="..\..\Source\Saaya_UE4\Animation\Player2AnimInstance.h" />
 		<ClCompile Include="..\..\Source\Saaya_UE4\Game\CameraViewSetArea.cpp" />
 		<ClInclude Include="..\..\Source\Saaya_UE4\Game\CameraViewSetArea.h" />
 		<ClCompile Include="..\..\Source\Saaya_UE4\Game\GameManager.cpp" />
@@ -430,6 +432,8 @@
 		<ClInclude Include="..\..\Source\Saaya_UE4\InGame\GameLight.h" />
 		<ClCompile Include="..\..\Source\Saaya_UE4\InGame\MovableGameObject.cpp" />
 		<ClInclude Include="..\..\Source\Saaya_UE4\InGame\MovableGameObject.h" />
+		<ClCompile Include="..\..\Source\Saaya_UE4\InGame\PossesableGameObject.cpp" />
+		<ClInclude Include="..\..\Source\Saaya_UE4\InGame\PossesableGameObject.h" />
 		<ClCompile Include="..\..\Source\Saaya_UE4\Players\Saaya_UE4Character.cpp" />
 		<ClInclude Include="..\..\Source\Saaya_UE4\Players\Saaya_UE4Character.h" />
 	</ItemGroup>
