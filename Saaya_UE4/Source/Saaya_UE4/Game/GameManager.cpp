@@ -92,17 +92,20 @@ void AGameManager::Switch()
 	TArray<AActor*> tempActorsArray;
 	CurrentPlayer->GetOverlappingActors(tempActorsArray, TSubclassOf<ACameraViewSetArea>());
 
-	ACameraViewSetArea* tempCameraArea = Cast<ACameraViewSetArea>(tempActorsArray[0]);
-
-
-	for (int32 b = 0; b < tempActorsArray.Num(); b++)
+	if (tempActorsArray.Num() > 0)
 	{
-		ACameraViewSetArea* tempCameraArea = Cast<ACameraViewSetArea>(tempActorsArray[b]);
+		ACameraViewSetArea* tempCameraArea = Cast<ACameraViewSetArea>(tempActorsArray[0]);
 
-		if (tempCameraArea)
+
+		for (int32 b = 0; b < tempActorsArray.Num(); b++)
 		{
-			AGameManager::MoveCameraTo(tempCameraArea->CameraHandle);
-			break;
+			ACameraViewSetArea* tempCameraArea = Cast<ACameraViewSetArea>(tempActorsArray[b]);
+
+			if (tempCameraArea)
+			{
+				AGameManager::MoveCameraTo(tempCameraArea->CameraHandle);
+				break;
+			}
 		}
 	}
 }
