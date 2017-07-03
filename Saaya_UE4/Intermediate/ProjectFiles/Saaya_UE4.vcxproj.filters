@@ -4,7 +4,7 @@
 	<ItemGroup>
 		<None Include="..\..\Saaya_UE4.uproject" />
 		<Filter Include="Source">
-			<UniqueIdentifier>{FB2B615D-AEB3-4A55-8D77-84B8C454752E}</UniqueIdentifier>
+			<UniqueIdentifier>{748AF7FE-50E5-4581-9239-2E8AAC99AAB1}</UniqueIdentifier>
 		</Filter>
 		<None Include="..\..\Source\Saaya_UE4.Target.cs">
 			<Filter>Source</Filter>
@@ -13,7 +13,7 @@
 			<Filter>Source</Filter>
 		</None >
 		<Filter Include="Config">
-			<UniqueIdentifier>{E8CDB6D0-C4F1-4E52-8E20-DCFED08B5D1D}</UniqueIdentifier>
+			<UniqueIdentifier>{75185571-47F0-41D6-A6A4-161F07D5612F}</UniqueIdentifier>
 		</Filter>
 		<None Include="..\..\Config\DefaultEditor.ini">
 			<Filter>Config</Filter>
@@ -31,7 +31,7 @@
 			<Filter>Config</Filter>
 		</None >
 		<Filter Include="Source\Saaya_UE4">
-			<UniqueIdentifier>{9DFC0E45-9A2F-40E6-9D6F-A52DF2981D10}</UniqueIdentifier>
+			<UniqueIdentifier>{D70F5AD5-8B51-4A49-BD22-D6D3D90670D0}</UniqueIdentifier>
 		</Filter>
 		<None Include="..\..\Source\Saaya_UE4\Saaya_UE4.Build.cs">
 			<Filter>Source\Saaya_UE4</Filter>
@@ -49,7 +49,7 @@
 			<Filter>Source\Saaya_UE4</Filter>
 		</ClInclude >
 		<Filter Include="Source\Saaya_UE4\Animation">
-			<UniqueIdentifier>{EDE09321-D012-440A-8131-85C90235AFE8}</UniqueIdentifier>
+			<UniqueIdentifier>{3B183128-C9E0-4ABF-8375-5B0B8A80E589}</UniqueIdentifier>
 		</Filter>
 		<ClCompile Include="..\..\Source\Saaya_UE4\Animation\Player1AnimInstance.cpp">
 			<Filter>Source\Saaya_UE4\Animation</Filter>
@@ -64,7 +64,7 @@
 			<Filter>Source\Saaya_UE4\Animation</Filter>
 		</ClInclude >
 		<Filter Include="Source\Saaya_UE4\Game">
-			<UniqueIdentifier>{16BEBDAD-9FC0-49AB-AC4E-F2B94442A0AA}</UniqueIdentifier>
+			<UniqueIdentifier>{687591AB-7FEC-4395-9699-A0F1A5F867CA}</UniqueIdentifier>
 		</Filter>
 		<ClCompile Include="..\..\Source\Saaya_UE4\Game\CameraViewSetArea.cpp">
 			<Filter>Source\Saaya_UE4\Game</Filter>
@@ -79,7 +79,7 @@
 			<Filter>Source\Saaya_UE4\Game</Filter>
 		</ClInclude >
 		<Filter Include="Source\Saaya_UE4\InGame">
-			<UniqueIdentifier>{57AD6B37-50E2-4FDD-AEDF-B3D4082C36F8}</UniqueIdentifier>
+			<UniqueIdentifier>{D217C0DE-DC0A-47C1-8C70-E2C220C2868E}</UniqueIdentifier>
 		</Filter>
 		<ClCompile Include="..\..\Source\Saaya_UE4\InGame\GameLight.cpp">
 			<Filter>Source\Saaya_UE4\InGame</Filter>
@@ -99,8 +99,17 @@
 		<ClInclude Include="..\..\Source\Saaya_UE4\InGame\PossesableGameObject.h">
 			<Filter>Source\Saaya_UE4\InGame</Filter>
 		</ClInclude >
+		<Filter Include="Source\Saaya_UE4\InGame\Possesables">
+			<UniqueIdentifier>{328E069E-7D43-4F59-9BBD-A7A016562BBD}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\Saaya_UE4\InGame\Possesables\Lamp.cpp">
+			<Filter>Source\Saaya_UE4\InGame\Possesables</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Saaya_UE4\InGame\Possesables\Lamp.h">
+			<Filter>Source\Saaya_UE4\InGame\Possesables</Filter>
+		</ClInclude >
 		<Filter Include="Source\Saaya_UE4\Players">
-			<UniqueIdentifier>{C11CBAA0-B7E1-48F1-AB4B-807AE320A3D2}</UniqueIdentifier>
+			<UniqueIdentifier>{CCEFB4AA-0CE7-4645-98B0-30084CCADDE4}</UniqueIdentifier>
 		</Filter>
 		<ClCompile Include="..\..\Source\Saaya_UE4\Players\Saaya_UE4Character.cpp">
 			<Filter>Source\Saaya_UE4\Players</Filter>

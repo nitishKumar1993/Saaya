@@ -15,6 +15,8 @@ private:
 	// Sets default values for this actor's properties
 	AGameManager();
 
+	bool Dead;
+
 	int CurrentPlayerID;
 
 	bool MoveCamera = true;

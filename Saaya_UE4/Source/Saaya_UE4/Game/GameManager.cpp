@@ -14,6 +14,7 @@ AGameManager::AGameManager()
 	CurrentPlayerID = 1;
 
 	MoveCamera = false;
+	Dead = false;
 }
 
 // Called when the game starts or when spawned

@@ -26,6 +26,9 @@
 #ifndef SAAYA_UE4_PossesableGameObject_generated_h
 	#include "InGame/PossesableGameObject.h"
 #endif
+#ifndef SAAYA_UE4_Lamp_generated_h
+	#include "InGame/Possesables/Lamp.h"
+#endif
 #ifndef SAAYA_UE4_Saaya_UE4Character_generated_h
 	#include "Players/Saaya_UE4Character.h"
 #endif

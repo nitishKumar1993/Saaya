@@ -48,6 +48,10 @@ void EmptyLinkFunctionForGeneratedCode1Saaya_UE4() {}
 	SAAYA_UE4_API class UFunction* Z_Construct_UFunction_APossesableGameObject_OnOverlapEnd();
 	SAAYA_UE4_API class UClass* Z_Construct_UClass_APossesableGameObject_NoRegister();
 	SAAYA_UE4_API class UClass* Z_Construct_UClass_APossesableGameObject();
+	SAAYA_UE4_API class UFunction* Z_Construct_UFunction_ALamp_OnOverlapBegin1();
+	SAAYA_UE4_API class UFunction* Z_Construct_UFunction_ALamp_OnOverlapEnd1();
+	SAAYA_UE4_API class UClass* Z_Construct_UClass_ALamp_NoRegister();
+	SAAYA_UE4_API class UClass* Z_Construct_UClass_ALamp();
 	SAAYA_UE4_API class UEnum* Z_Construct_UEnum_Saaya_UE4_PlayerType();
 	SAAYA_UE4_API class UFunction* Z_Construct_UFunction_ASaaya_UE4Character_OnOverlapBegin();
 	SAAYA_UE4_API class UFunction* Z_Construct_UFunction_ASaaya_UE4Character_OnOverlapEnd();
@@ -616,6 +620,131 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	IMPLEMENT_CLASS(APossesableGameObject, 4190486162);
 	static FCompiledInDefer Z_CompiledInDefer_UClass_APossesableGameObject(Z_Construct_UClass_APossesableGameObject, &APossesableGameObject::StaticClass, TEXT("/Script/Saaya_UE4"), TEXT("APossesableGameObject"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(APossesableGameObject);
+	void ALamp::StaticRegisterNativesALamp()
+	{
+		UClass* Class = ALamp::StaticClass();
+		static const TNameNativePtrPair<ANSICHAR> AnsiFuncs[] = {
+			{ "OnOverlapBegin1", (Native)&ALamp::execOnOverlapBegin1 },
+			{ "OnOverlapEnd1", (Native)&ALamp::execOnOverlapEnd1 },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, AnsiFuncs, 2);
+	}
+	UFunction* Z_Construct_UFunction_ALamp_OnOverlapBegin1()
+	{
+		struct Lamp_eventOnOverlapBegin1_Parms
+		{
+			UPrimitiveComponent* OverlappedComp;
+			AActor* OtherActor;
+			UPrimitiveComponent* OtherComp;
+			int32 OtherBodyIndex;
+			bool bFromSweep;
+			FHitResult SweepResult;
+		};
+		UObject* Outer=Z_Construct_UClass_ALamp();
+		static UFunction* ReturnFunction = NULL;
+		if (!ReturnFunction)
+		{
+			ReturnFunction = new(EC_InternalUseOnlyConstructor, Outer, TEXT("OnOverlapBegin1"), RF_Public|RF_Transient|RF_MarkAsNative) UFunction(FObjectInitializer(), NULL, 0x00420401, 65535, sizeof(Lamp_eventOnOverlapBegin1_Parms));
+			UProperty* NewProp_SweepResult = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("SweepResult"), RF_Public|RF_Transient|RF_MarkAsNative) UStructProperty(CPP_PROPERTY_BASE(SweepResult, Lamp_eventOnOverlapBegin1_Parms), 0x0010008008000182, Z_Construct_UScriptStruct_FHitResult());
+			CPP_BOOL_PROPERTY_BITMASK_STRUCT(bFromSweep, Lamp_eventOnOverlapBegin1_Parms, bool);
+			UProperty* NewProp_bFromSweep = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("bFromSweep"), RF_Public|RF_Transient|RF_MarkAsNative) UBoolProperty(FObjectInitializer(), EC_CppProperty, CPP_BOOL_PROPERTY_OFFSET(bFromSweep, Lamp_eventOnOverlapBegin1_Parms), 0x0010000000000080, CPP_BOOL_PROPERTY_BITMASK(bFromSweep, Lamp_eventOnOverlapBegin1_Parms), sizeof(bool), true);
+			UProperty* NewProp_OtherBodyIndex = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OtherBodyIndex"), RF_Public|RF_Transient|RF_MarkAsNative) UIntProperty(CPP_PROPERTY_BASE(OtherBodyIndex, Lamp_eventOnOverlapBegin1_Parms), 0x0010000000000080);
+			UProperty* NewProp_OtherComp = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OtherComp"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(OtherComp, Lamp_eventOnOverlapBegin1_Parms), 0x0010000000080080, Z_Construct_UClass_UPrimitiveComponent_NoRegister());
+			UProperty* NewProp_OtherActor = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OtherActor"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(OtherActor, Lamp_eventOnOverlapBegin1_Parms), 0x0010000000000080, Z_Construct_UClass_AActor_NoRegister());
+			UProperty* NewProp_OverlappedComp = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OverlappedComp"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(OverlappedComp, Lamp_eventOnOverlapBegin1_Parms), 0x0010000000080080, Z_Construct_UClass_UPrimitiveComponent_NoRegister());
+			ReturnFunction->Bind();
+			ReturnFunction->StaticLink();
+#if WITH_METADATA
+			UMetaData* MetaData = ReturnFunction->GetOutermost()->GetMetaData();
+			MetaData->SetValue(ReturnFunction, TEXT("ModuleRelativePath"), TEXT("InGame/Possesables/Lamp.h"));
+			MetaData->SetValue(NewProp_SweepResult, TEXT("NativeConst"), TEXT(""));
+			MetaData->SetValue(NewProp_OtherComp, TEXT("EditInline"), TEXT("true"));
+			MetaData->SetValue(NewProp_OverlappedComp, TEXT("EditInline"), TEXT("true"));
+#endif
+		}
+		return ReturnFunction;
+	}
+	UFunction* Z_Construct_UFunction_ALamp_OnOverlapEnd1()
+	{
+		struct Lamp_eventOnOverlapEnd1_Parms
+		{
+			UPrimitiveComponent* OverlappedComp;
+			AActor* OtherActor;
+			UPrimitiveComponent* OtherComp;
+			int32 OtherBodyIndex;
+		};
+		UObject* Outer=Z_Construct_UClass_ALamp();
+		static UFunction* ReturnFunction = NULL;
+		if (!ReturnFunction)
+		{
+			ReturnFunction = new(EC_InternalUseOnlyConstructor, Outer, TEXT("OnOverlapEnd1"), RF_Public|RF_Transient|RF_MarkAsNative) UFunction(FObjectInitializer(), NULL, 0x00020401, 65535, sizeof(Lamp_eventOnOverlapEnd1_Parms));
+			UProperty* NewProp_OtherBodyIndex = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OtherBodyIndex"), RF_Public|RF_Transient|RF_MarkAsNative) UIntProperty(CPP_PROPERTY_BASE(OtherBodyIndex, Lamp_eventOnOverlapEnd1_Parms), 0x0010000000000080);
+			UProperty* NewProp_OtherComp = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OtherComp"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(OtherComp, Lamp_eventOnOverlapEnd1_Parms), 0x0010000000080080, Z_Construct_UClass_UPrimitiveComponent_NoRegister());
+			UProperty* NewProp_OtherActor = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OtherActor"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(OtherActor, Lamp_eventOnOverlapEnd1_Parms), 0x0010000000000080, Z_Construct_UClass_AActor_NoRegister());
+			UProperty* NewProp_OverlappedComp = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("OverlappedComp"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(OverlappedComp, Lamp_eventOnOverlapEnd1_Parms), 0x0010000000080080, Z_Construct_UClass_UPrimitiveComponent_NoRegister());
+			ReturnFunction->Bind();
+			ReturnFunction->StaticLink();
+#if WITH_METADATA
+			UMetaData* MetaData = ReturnFunction->GetOutermost()->GetMetaData();
+			MetaData->SetValue(ReturnFunction, TEXT("ModuleRelativePath"), TEXT("InGame/Possesables/Lamp.h"));
+			MetaData->SetValue(NewProp_OtherComp, TEXT("EditInline"), TEXT("true"));
+			MetaData->SetValue(NewProp_OverlappedComp, TEXT("EditInline"), TEXT("true"));
+#endif
+		}
+		return ReturnFunction;
+	}
+	UClass* Z_Construct_UClass_ALamp_NoRegister()
+	{
+		return ALamp::StaticClass();
+	}
+	UClass* Z_Construct_UClass_ALamp()
+	{
+		static UClass* OuterClass = NULL;
+		if (!OuterClass)
+		{
+			Z_Construct_UClass_APossesableGameObject();
+			Z_Construct_UPackage__Script_Saaya_UE4();
+			OuterClass = ALamp::StaticClass();
+			if (!(OuterClass->ClassFlags & CLASS_Constructed))
+			{
+				UObjectForceRegistration(OuterClass);
+				OuterClass->ClassFlags |= 0x20900080;
+
+				OuterClass->LinkChild(Z_Construct_UFunction_ALamp_OnOverlapBegin1());
+				OuterClass->LinkChild(Z_Construct_UFunction_ALamp_OnOverlapEnd1());
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+				UProperty* NewProp_LightSource = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("LightSource"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(LightSource, ALamp), 0x0010000000080009, Z_Construct_UClass_USpotLightComponent_NoRegister());
+				UProperty* NewProp_LightColliderMesh = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("LightColliderMesh"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(LightColliderMesh, ALamp), 0x0010000000080009, Z_Construct_UClass_UStaticMeshComponent_NoRegister());
+				UProperty* NewProp_Light = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("Light"), RF_Public|RF_Transient|RF_MarkAsNative) UObjectProperty(CPP_PROPERTY_BASE(Light, ALamp), 0x0010000000080009, Z_Construct_UClass_USceneComponent_NoRegister());
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_ALamp_OnOverlapBegin1(), "OnOverlapBegin1"); // 2455248053
+				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_ALamp_OnOverlapEnd1(), "OnOverlapEnd1"); // 249109501
+				static TCppClassTypeInfo<TCppClassTypeTraits<ALamp> > StaticCppClassTypeInfo;
+				OuterClass->SetCppTypeInfo(&StaticCppClassTypeInfo);
+				OuterClass->StaticLink();
+#if WITH_METADATA
+				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
+				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("InGame/Possesables/Lamp.h"));
+				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("InGame/Possesables/Lamp.h"));
+				MetaData->SetValue(NewProp_LightSource, TEXT("Category"), TEXT("Public_Variables"));
+				MetaData->SetValue(NewProp_LightSource, TEXT("EditInline"), TEXT("true"));
+				MetaData->SetValue(NewProp_LightSource, TEXT("ModuleRelativePath"), TEXT("InGame/Possesables/Lamp.h"));
+				MetaData->SetValue(NewProp_LightColliderMesh, TEXT("Category"), TEXT("Public_Variables"));
+				MetaData->SetValue(NewProp_LightColliderMesh, TEXT("EditInline"), TEXT("true"));
+				MetaData->SetValue(NewProp_LightColliderMesh, TEXT("ModuleRelativePath"), TEXT("InGame/Possesables/Lamp.h"));
+				MetaData->SetValue(NewProp_Light, TEXT("Category"), TEXT("Public_Variables"));
+				MetaData->SetValue(NewProp_Light, TEXT("EditInline"), TEXT("true"));
+				MetaData->SetValue(NewProp_Light, TEXT("ModuleRelativePath"), TEXT("InGame/Possesables/Lamp.h"));
+#endif
+			}
+		}
+		check(OuterClass->GetClass());
+		return OuterClass;
+	}
+	IMPLEMENT_CLASS(ALamp, 1010879);
+	static FCompiledInDefer Z_CompiledInDefer_UClass_ALamp(Z_Construct_UClass_ALamp, &ALamp::StaticClass, TEXT("/Script/Saaya_UE4"), TEXT("ALamp"), false, nullptr, nullptr, nullptr);
+	DEFINE_VTABLE_PTR_HELPER_CTOR(ALamp);
 static UEnum* PlayerType_StaticEnum()
 {
 	extern SAAYA_UE4_API class UPackage* Z_Construct_UPackage__Script_Saaya_UE4();
@@ -858,8 +987,8 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 			ReturnPackage = CastChecked<UPackage>(StaticFindObjectFast(UPackage::StaticClass(), nullptr, FName(TEXT("/Script/Saaya_UE4")), false, false));
 			ReturnPackage->SetPackageFlags(PKG_CompiledIn | 0x00000000);
 			FGuid Guid;
-			Guid.A = 0x67FE3F93;
-			Guid.B = 0x1778FC96;
+			Guid.A = 0xA66C0516;
+			Guid.B = 0x944E1C13;
 			Guid.C = 0x00000000;
 			Guid.D = 0x00000000;
 			ReturnPackage->SetGuid(Guid);

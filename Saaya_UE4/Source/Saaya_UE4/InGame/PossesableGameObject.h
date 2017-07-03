@@ -19,17 +19,19 @@ class SAAYA_UE4_API APossesableGameObject : public AActor
 {
 	GENERATED_BODY()
 	
-public:	
-	// Sets default values for this actor's properties
-	APossesableGameObject();
+private:	
 
 	ACharacter* player2;
+
+	bool PlayerInside;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
+	// Sets default values for this actor's properties
+	APossesableGameObject();
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -48,7 +50,6 @@ public:
 	void PossesThis();
 
 	void PossesKeyDown();
-	void PossesKeyUp();
 
 	UFUNCTION()
 		void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);

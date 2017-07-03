@@ -21,7 +21,6 @@ APossesableGameObject::APossesableGameObject()
 	TriggerComp->OnComponentBeginOverlap.AddDynamic(this, &APossesableGameObject::OnOverlapBegin);
 	TriggerComp->OnComponentEndOverlap.AddDynamic(this, &APossesableGameObject::OnOverlapEnd);
 	TriggerComp->SetupAttachment(MeshComp);
-
 }
 
 // Called when the game starts or when spawned
@@ -31,9 +30,10 @@ void APossesableGameObject::BeginPlay()
 
 	UWorld* World = GetWorld();
 	if (World) {
-		World->GetFirstPlayerController()->InputComponent->BindAction("Push", IE_Pressed, this, &APossesableGameObject::PossesKeyDown);
-		World->GetFirstPlayerController()->InputComponent->BindAction("Push", IE_Released, this, &APossesableGameObject::PossesKeyUp);
+		World->GetFirstPlayerController()->InputComponent->BindAction("Posses", IE_Pressed, this, &APossesableGameObject::PossesKeyDown);
 	}
+
+	PlayerInside = false;
 }
 
 // Called every frame
@@ -45,6 +45,8 @@ void APossesableGameObject::Tick(float DeltaTime)
 
 void APossesableGameObject::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
 {
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red,  "Entered : " + OtherActor->GetName());
+
 	ASaaya_UE4Character* Player = Cast<ASaaya_UE4Character>(OtherActor);
 
 	if (Player)
@@ -54,6 +56,7 @@ void APossesableGameObject::OnOverlapBegin(UPrimitiveComponent * OverlappedComp,
 			player2 = Cast<ACharacter>(OtherActor);
 
 			MeshComp->SetRenderCustomDepth(true);
+			PlayerInside = true;
 		}
 	}
 
@@ -69,24 +72,23 @@ void APossesableGameObject::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AA
 		if (Player->CurrentPlayerType == PlayerType::Player2)
 		{
 			MeshComp->SetRenderCustomDepth(false);
+			PlayerInside = false;
 		}
 	}
 }
 
-void APossesableGameObject::PossesKeyUp()
-{
-
-}
-
 void APossesableGameObject::PossesKeyDown()
 {
-
+	if (PlayerInside)
+	{
+		APossesableGameObject::PossesThis();
+	}
 }
 
 
 void APossesableGameObject::PossesThis()
 {
-
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "PossesThis");
 }
 
 
