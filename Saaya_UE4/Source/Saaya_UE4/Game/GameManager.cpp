@@ -15,6 +15,8 @@ AGameManager::AGameManager()
 
 	MoveCamera = false;
 	Dead = false;
+
+	CameraSpeed = 0.15f;
 }
 
 // Called when the game starts or when spawned
@@ -39,22 +41,21 @@ void AGameManager::Tick(float DeltaTime)
 	{
 		FVector tempLocation1 = m_gameCamera->GetActorLocation();
 		FVector tempLocation2 = NextCameraMovePosHandle->GetComponentLocation();
-		float Alpha1 = 0.15f;
+		float Alpha1 = CameraSpeed;
 		FVector finalLocation = FMath::Lerp(tempLocation1, tempLocation2, Alpha1);
 
 		m_gameCamera->SetActorLocation(finalLocation);
 
+		FRotator tempRotation1 = m_gameCamera->GetActorRotation();
+		FRotator tempRotation2 = NextCameraMovePosHandle->GetComponentRotation();
+		float Alpha2 = CameraSpeed;
+		FRotator finalRotation = FMath::Lerp(tempRotation1, tempRotation2, Alpha2);
+
+		m_gameCamera->SetActorRotation(finalRotation, ETeleportType::TeleportPhysics);
 		if (FVector::Distance(tempLocation1, tempLocation2) <= 5)
 		{
 			MoveCamera = false;
 		}
-
-		FRotator tempRotation1 = m_gameCamera->GetActorRotation();
-		FRotator tempRotation2 = NextCameraMovePosHandle->GetComponentRotation();
-		float Alpha2 = 0.15f;
-		FRotator finalRotation = FMath::Lerp(tempRotation1, tempRotation2, Alpha2);
-
-		m_gameCamera->SetActorRotation(finalRotation, ETeleportType::TeleportPhysics);
 	}
 }
 

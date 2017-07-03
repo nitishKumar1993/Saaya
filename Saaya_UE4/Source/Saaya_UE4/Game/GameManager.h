@@ -43,6 +43,9 @@ public:
 	UPROPERTY(EditAnywhere, Category = Public_Variables)
 		AActor* m_gameCamera;
 
+	UPROPERTY(EditAnywhere, Category = Public_Variables)
+		float CameraSpeed;
+
 	void Switch();
 
 	void MoveCameraTo(USceneComponent* Pos);

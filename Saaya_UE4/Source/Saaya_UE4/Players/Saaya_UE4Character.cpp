@@ -161,10 +161,38 @@ void ASaaya_UE4Character::MoveRight(float Value)
 
 	}
 
-	if (!GetCharacterMovement()->IsFalling())
+	FVector moveDir = FVector(0.f, -1.f, 0.f);
+
+	if (!GetCharacterMovement()->IsFalling() && abs(Value) > 0)
 	{
 		// add movement in that direction
-		AddMovementInput(FVector(0.f, -1.f, 0.f), Value);
+		AGameManager* GameManager = Cast<AGameManager>(GameManagerActor);
+		if (GameManager != NULL)
+		{
+			float currentYaw = GameManager->m_gameCamera->GetActorRotation().Yaw > 0 ? GameManager->m_gameCamera->GetActorRotation().Yaw : (360 - GameManager->m_gameCamera->GetActorRotation().Yaw);
+
+			if (currentYaw >= 45 && currentYaw <= 135)
+			{
+				moveDir = FVector(-1.f, 0.f, 0.f);
+			}
+			else if (currentYaw >= 135 && currentYaw <= 225)
+			{
+				moveDir = FVector(0.f, -1.f, 0.f);
+			}
+			else if (currentYaw >= 225 && currentYaw <= 315)
+			{
+				moveDir = FVector(1.f, 0.f, 0.f);
+			}
+			else if ((currentYaw >= 315 && currentYaw <= 360) || (currentYaw >= 0 && currentYaw < 45))
+			{
+				moveDir = FVector(0.f, 1.f, 0.f);
+			}
+		}
+		else {
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "Couldnt find GameManager...casting problem may be....");
+		}
+
+		AddMovementInput(moveDir, Value);
 	}
 }
 
@@ -205,10 +233,39 @@ void ASaaya_UE4Character::MoveForward(float Value)
 		}
 	}
 
-	if (!GetCharacterMovement()->IsFalling())
+	FVector moveDir = FVector(-1.f, 0.f, 0.f);
+
+	if (!GetCharacterMovement()->IsFalling() && abs(Value)  > 0)
 	{
 		// add movement in that direction
-		AddMovementInput(FVector(-1.f, 0.f, 0.f), Value);
+		AGameManager* GameManager = Cast<AGameManager>(GameManagerActor);
+		if (GameManager != NULL)
+		{
+			float currentYaw = GameManager->m_gameCamera->GetActorRotation().Yaw > 0 ? GameManager->m_gameCamera->GetActorRotation().Yaw : (360 - GameManager->m_gameCamera->GetActorRotation().Yaw);
+
+			if (currentYaw >= 45 && currentYaw <= 135)
+			{
+				moveDir = FVector(0.f, 1.f, 0.f);
+			}
+			else if (currentYaw >= 135 && currentYaw <= 225)
+			{
+				moveDir = FVector(-1.f, 0.f, 0.f);
+			}
+			else if (currentYaw >= 225 && currentYaw <= 315)
+			{
+				moveDir = FVector(0.f, -1.f, 0.f);
+			}
+			else if ((currentYaw >= 315 && currentYaw <= 360) || (currentYaw >= 0 && currentYaw <= 45))
+			{
+				moveDir = FVector(1.f, 0.f, 0.f);
+			}
+		}
+		else {
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, "Couldnt find GameManager...casting problem may be....");
+		}
+
+		// add movement in that direction
+		AddMovementInput(moveDir, Value);
 	}
 }
 

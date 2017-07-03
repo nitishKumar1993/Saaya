@@ -1,0 +1,75 @@
+/MANIFEST:NO
+/NOLOGO
+/DEBUG
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/FIXED:No
+/NXCOMPAT
+/STACK:5000000
+/DELAY:UNLOAD
+/DLL
+/PDBALTPATH:%_PDB%
+/OPT:NOREF
+/OPT:NOICF
+/INCREMENTAL:NO
+/ignore:4199
+/ignore:4099
+/DELAYLOAD:"d3d12.dll"
+/NODEFAULTLIB:"LIBCMT"
+/NODEFAULTLIB:"LIBCPMT"
+/NODEFAULTLIB:"LIBCMTD"
+/NODEFAULTLIB:"LIBCPMTD"
+/NODEFAULTLIB:"MSVCRTD"
+/NODEFAULTLIB:"MSVCPRTD"
+/NODEFAULTLIB:"LIBC"
+/NODEFAULTLIB:"LIBCP"
+/NODEFAULTLIB:"LIBCD"
+/NODEFAULTLIB:"LIBCPD"
+"E:\SoftWares\UE4\UE_4.16\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h.obj"
+"D:\Github Repos\Saaya\Saaya_UE4\Intermediate\Build\Win64\UE4Editor\Development\Saaya_UE4\Saaya_UE4.cpp.obj"
+"D:\Github Repos\Saaya\Saaya_UE4\Intermediate\Build\Win64\UE4Editor\Development\Saaya_UE4\Saaya_UE4GameMode.cpp.obj"
+"D:\Github Repos\Saaya\Saaya_UE4\Intermediate\Build\Win64\UE4Editor\Development\Saaya_UE4\Player1AnimInstance.cpp.obj"
+"D:\Github Repos\Saaya\Saaya_UE4\Intermediate\Build\Win64\UE4Editor\Development\Saaya_UE4\Player2AnimInstance.cpp.obj"
+"D:\Github Repos\Saaya\Saaya_UE4\Intermediate\Build\Win64\UE4Editor\Development\Saaya_UE4\CameraViewSetArea.cpp.obj"
+"D:\Github Repos\Saaya\Saaya_UE4\Intermediate\Build\Win64\UE4Editor\Development\Saaya_UE4\GameManager.cpp.obj"
+"D:\Github Repos\Saaya\Saaya_UE4\Intermediate\Build\Win64\UE4Editor\Development\Saaya_UE4\GameLight.cpp.obj"
+"D:\Github Repos\Saaya\Saaya_UE4\Intermediate\Build\Win64\UE4Editor\Development\Saaya_UE4\MovableGameObject.cpp.obj"
+"D:\Github Repos\Saaya\Saaya_UE4\Intermediate\Build\Win64\UE4Editor\Development\Saaya_UE4\PossesableGameObject.cpp.obj"
+"D:\Github Repos\Saaya\Saaya_UE4\Intermediate\Build\Win64\UE4Editor\Development\Saaya_UE4\Lamp.cpp.obj"
+"D:\Github Repos\Saaya\Saaya_UE4\Intermediate\Build\Win64\UE4Editor\Development\Saaya_UE4\Saaya_UE4Character.cpp.obj"
+"D:\Github Repos\Saaya\Saaya_UE4\Intermediate\Build\Win64\UE4Editor\Development\Saaya_UE4\Saaya_UE4.generated.cpp.obj"
+"E:\SoftWares\UE4\UE_4.16\Engine\Intermediate\Build\Win64\UE4Editor\Development\Saaya_UE4\PCLaunch.rc.res"
+"E:\SoftWares\UE4\UE_4.16\Engine\Intermediate\Build\Win64\UE4Editor\Development\ModuleVersionResource.rc.inl.res"
+"delayimp.lib"
+"wininet.lib"
+"rpcrt4.lib"
+"ws2_32.lib"
+"dbghelp.lib"
+"comctl32.lib"
+"Winmm.lib"
+"kernel32.lib"
+"user32.lib"
+"gdi32.lib"
+"winspool.lib"
+"comdlg32.lib"
+"advapi32.lib"
+"shell32.lib"
+"ole32.lib"
+"oleaut32.lib"
+"uuid.lib"
+"odbc32.lib"
+"odbccp32.lib"
+"netapi32.lib"
+"iphlpapi.lib"
+"setupapi.lib"
+"dwmapi.lib"
+"imm32.lib"
+"E:\SoftWares\UE4\UE_4.16\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-Engine.lib"
+"E:\SoftWares\UE4\UE_4.16\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-Core.lib"
+"E:\SoftWares\UE4\UE_4.16\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-CoreUObject.lib"
+"E:\SoftWares\UE4\UE_4.16\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-InputCore.lib"
+/OUT:"D:\Github Repos\Saaya\Saaya_UE4\Binaries\Win64\UE4Editor-Saaya_UE4-7902.dll"
+/IMPLIB:"D:\Github Repos\Saaya\Saaya_UE4\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-Saaya_UE4-7902.suppressed.lib"
+/PDB:"D:\Github Repos\Saaya\Saaya_UE4\Binaries\Win64\UE4Editor-Saaya_UE4-7902.pdb"
+/ignore:4078
