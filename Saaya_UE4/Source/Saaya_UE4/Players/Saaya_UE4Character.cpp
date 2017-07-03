@@ -125,7 +125,7 @@ void ASaaya_UE4Character::MoveRight(float Value)
 		{
 			Animation->IsInAir = GetCharacterMovement()->IsFalling();
 			//Animation->WalkValue = abs(Value);
-			if (abs(Value) > 0)
+			if (abs((long)Value) > 0)
 			{
 				//Animation->WalkValue = abs(Value);
 				Animation->WalkValue = 0.3f;
@@ -148,7 +148,7 @@ void ASaaya_UE4Character::MoveRight(float Value)
 		{
 			Animation->IsInAir = GetCharacterMovement()->IsFalling();
 			//Animation->WalkValue = abs(Value);
-			if (abs(Value) > 0)
+			if (abs((long)Value) > 0)
 			{
 				//Animation->WalkValue = abs(Value);
 				Animation->WalkValue = 0.3f;
@@ -180,7 +180,7 @@ void ASaaya_UE4Character::MoveForward(float Value)
 		}
 		else
 		{
-			if (abs(Value) > 0)
+			if (abs((long)Value) > 0)
 			{
 				//Animation->WalkValue = abs(Value);
 				Animation->WalkValue = 0.3f;
@@ -197,7 +197,7 @@ void ASaaya_UE4Character::MoveForward(float Value)
 		}
 		else
 		{
-			if (abs(Value) > 0)
+			if (abs((long)Value) > 0)
 			{
 				//Animation->WalkValue = abs(Value);
 				Animation->WalkValue = 0.3f;
