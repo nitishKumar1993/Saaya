@@ -1,4 +1,4 @@
-// Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
+﻿// Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
 #include "Saaya_UE4Character.h"
 #include "Camera/CameraComponent.h"
@@ -39,6 +39,7 @@ ASaaya_UE4Character::ASaaya_UE4Character()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
+
 }
 
 void ASaaya_UE4Character::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
@@ -51,11 +52,11 @@ void ASaaya_UE4Character::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, A
 	{
 		ACameraViewSetArea* cameraViewArea = Cast<ACameraViewSetArea>(OtherActor);
 
-		AGameManager* GameManager = Cast<AGameManager>(GameManagerActor);
-		
-		ASaaya_UE4Character* ActiveCharacter = Cast<ASaaya_UE4Character>(GameManager->CurrentPlayer);
-		if(this == ActiveCharacter)
-			GameManager->MoveCameraTo(cameraViewArea->CameraHandle);
+		if (CurrentGameManager)
+		{
+			if (this == CurrentGameManager->CurrentPlayer)
+				CurrentGameManager->MoveCameraTo(cameraViewArea->CameraHandle);
+		}
 	}
 }
 
@@ -73,6 +74,12 @@ void ASaaya_UE4Character::OnPlayerHit(UPrimitiveComponent* HitComponent, AActor*
 void ASaaya_UE4Character::BeginPlay()
 {
 	Super::BeginPlay();
+
+	bIsInLight = false;
+
+	bCheckLightingCondition = true;
+
+	CurrentGameManager = Cast<AGameManager>(GameManagerActor);
 }
 
 // Called every frame
@@ -80,6 +87,15 @@ void ASaaya_UE4Character::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (CurrentGameManager)
+	{
+		if(CurrentGameManager->CurrentPlayer == this && !CurrentGameManager->GameOver)
+			ASaaya_UE4Character::HandleLightDetection();
+	}
+	else
+	{
+		CurrentGameManager = Cast<AGameManager>(GameManagerActor);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -166,10 +182,9 @@ void ASaaya_UE4Character::MoveRight(float Value)
 	if (!GetCharacterMovement()->IsFalling() && abs(Value) > 0)
 	{
 		// add movement in that direction
-		AGameManager* GameManager = Cast<AGameManager>(GameManagerActor);
-		if (GameManager != NULL)
+		if (CurrentGameManager != NULL)
 		{
-			float currentYaw = GameManager->m_gameCamera->GetActorRotation().Yaw > 0 ? GameManager->m_gameCamera->GetActorRotation().Yaw : (360 - GameManager->m_gameCamera->GetActorRotation().Yaw);
+			float currentYaw = CurrentGameManager->m_gameCamera->GetActorRotation().Yaw > 0 ? CurrentGameManager->m_gameCamera->GetActorRotation().Yaw : (360 - CurrentGameManager->m_gameCamera->GetActorRotation().Yaw);
 
 			if (currentYaw >= 45 && currentYaw <= 135)
 			{
@@ -238,10 +253,9 @@ void ASaaya_UE4Character::MoveForward(float Value)
 	if (!GetCharacterMovement()->IsFalling() && abs(Value)  > 0)
 	{
 		// add movement in that direction
-		AGameManager* GameManager = Cast<AGameManager>(GameManagerActor);
-		if (GameManager != NULL)
+		if (CurrentGameManager != NULL)
 		{
-			float currentYaw = GameManager->m_gameCamera->GetActorRotation().Yaw > 0 ? GameManager->m_gameCamera->GetActorRotation().Yaw : (360 - GameManager->m_gameCamera->GetActorRotation().Yaw);
+			float currentYaw = CurrentGameManager->m_gameCamera->GetActorRotation().Yaw > 0 ? CurrentGameManager->m_gameCamera->GetActorRotation().Yaw : (360 - CurrentGameManager->m_gameCamera->GetActorRotation().Yaw);
 
 			if (currentYaw >= 45 && currentYaw <= 135)
 			{
@@ -278,4 +292,72 @@ void ASaaya_UE4Character::TouchStarted(const ETouchIndex::Type FingerIndex, cons
 void ASaaya_UE4Character::TouchStopped(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
 	StopJumping();
+}
+
+void ASaaya_UE4Character::HandleLightDetection()
+{
+	// If "CheckLightingCondition" is true,
+	if (bCheckLightingCondition)
+	{
+		// Write "bIsInLight" to the screen as a message,
+		//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Yellow, FString::FromInt(bIsInLight));
+
+		// Create a bool that will tell if any light is actually affecting the player or if the player is in any of the lights,
+		bool lit = false;
+
+		// [THANKS TO RAMA FOR THE ARTICLE ABOUT THIS! :D] For every light component,
+		for (TObjectIterator<ULightComponent> Itr; Itr; ++Itr)
+		{
+			// THANKS TO N00854180T FOR MAKING THE CODE SO MUCH NEATER 😀 //
+
+			// If this light is enabled (or visible),
+			if (!Itr->IsVisible())
+				continue;
+
+			// If the light type is not directional,
+			if (Itr->GetLightType() == LightType_Directional)
+				continue;
+
+			// If the light affects this character's capsule component,
+			if (!Itr->AffectsPrimitive(GetCapsuleComponent()))
+				continue;
+
+			// If the light is bhidden in the game
+			if (Itr->GetAttachmentRoot()->bHiddenInGame)
+				continue;
+
+			// If a line trace test from the light's position to the character's position does not hit any actor,
+			if (GetWorld()->LineTraceTestByChannel(Itr->GetComponentLocation(), GetActorLocation(), ECC_Visibility, FCollisionQueryParams(true)))
+				continue;
+
+			// Draw a Debug Line to show how the light is hitting the player,
+			DrawDebugLine(GetWorld(), Itr->GetComponentLocation(), GetActorLocation(), FColor::Yellow);
+
+			// The player is in light, so set "lit" to true.
+			lit = true;
+		}
+
+		// If "lit",
+		if (lit)
+		{
+			if (CurrentPlayerType == PlayerType::Player2)
+			{
+				CurrentGameManager->GameOver = true;
+			}
+
+			// Set "bIsInLight" to true,
+			bIsInLight = true;
+
+			// And prevent "bIsInLight" from being set to false by returning.
+			return;
+		}
+
+		if (CurrentPlayerType == PlayerType::Player1)
+		{
+			CurrentGameManager->GameOver = true;
+		}
+
+		// Only set to false if "lit" is not equal to true.
+		bIsInLight = false;
+	}
 }

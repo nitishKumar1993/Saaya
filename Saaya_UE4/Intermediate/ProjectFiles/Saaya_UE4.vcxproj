@@ -436,6 +436,8 @@
 		<ClInclude Include="..\..\Source\Saaya_UE4\InGame\PossesableGameObject.h" />
 		<ClCompile Include="..\..\Source\Saaya_UE4\InGame\Possesables\Lamp.cpp" />
 		<ClInclude Include="..\..\Source\Saaya_UE4\InGame\Possesables\Lamp.h" />
+		<ClCompile Include="..\..\Source\Saaya_UE4\InGame\PuzzleProps\Ruler.cpp" />
+		<ClInclude Include="..\..\Source\Saaya_UE4\InGame\PuzzleProps\Ruler.h" />
 		<ClCompile Include="..\..\Source\Saaya_UE4\Players\Saaya_UE4Character.cpp" />
 		<ClInclude Include="..\..\Source\Saaya_UE4\Players\Saaya_UE4Character.h" />
 	</ItemGroup>

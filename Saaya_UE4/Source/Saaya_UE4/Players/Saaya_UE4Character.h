@@ -45,10 +45,20 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	ASaaya_UE4Character();
+
+	void HandleLightDetection();
+
+	UPROPERTY(EditAnywhere)
+		bool bCheckLightingCondition;
+
+	UPROPERTY(EditAnywhere)
+		bool bIsInLight;
+
 	UPROPERTY(EditAnywhere)
 		AActor* GameManagerActor;
 
-	ASaaya_UE4Character();
+	class AGameManager* CurrentGameManager;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Public_Variables)
 		PlayerType CurrentPlayerType;

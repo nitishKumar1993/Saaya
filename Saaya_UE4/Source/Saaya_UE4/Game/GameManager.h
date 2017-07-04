@@ -15,8 +15,6 @@ private:
 	// Sets default values for this actor's properties
 	AGameManager();
 
-	bool Dead;
-
 	int CurrentPlayerID;
 
 	bool MoveCamera = true;
@@ -31,6 +29,8 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	bool GameOver;
 	
 	UPROPERTY(EditAnywhere, Category = Public_Variables)
 		APawn* m_player1;

@@ -14,7 +14,7 @@ AGameManager::AGameManager()
 	CurrentPlayerID = 1;
 
 	MoveCamera = false;
-	Dead = false;
+	GameOver = false;
 
 	CameraSpeed = 0.15f;
 }
@@ -37,7 +37,13 @@ void AGameManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (MoveCamera)
+	//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Yellow, FString::FromInt(GameOver));
+	if(GameOver)
+		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Yellow, "GameOver : True");
+	else
+		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Yellow, "GameOver : False");
+
+	if (MoveCamera && !GameOver)
 	{
 		FVector tempLocation1 = m_gameCamera->GetActorLocation();
 		FVector tempLocation2 = NextCameraMovePosHandle->GetComponentLocation();
@@ -57,6 +63,8 @@ void AGameManager::Tick(float DeltaTime)
 			MoveCamera = false;
 		}
 	}
+
+	
 }
 
 void AGameManager::MoveCameraTo(USceneComponent* handleComp)
@@ -68,44 +76,47 @@ void AGameManager::MoveCameraTo(USceneComponent* handleComp)
 
 void AGameManager::Switch()
 {
-	APlayerController* controller = UGameplayStatics::GetPlayerController(GetWorld(), 0);
-	controller->UnPossess();
-
-	ASaaya_UE4Character* CurrentCharacter;
-
-	if (CurrentPlayer)
+	if (!GameOver)
 	{
-		ASaaya_UE4Character* CurrentCharacter = Cast<ASaaya_UE4Character>(CurrentPlayer);
-		CurrentCharacter->GetMesh()->SetRenderCustomDepth(false);
-	}
+		APlayerController* controller = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+		controller->UnPossess();
 
-	CurrentPlayer = (CurrentPlayerID == 1 ? m_player1 : m_player2);
+		ASaaya_UE4Character* CurrentCharacter;
 
-	CurrentCharacter = Cast<ASaaya_UE4Character>(CurrentPlayer);
-	if(CurrentCharacter)
-		CurrentCharacter->GetMesh()->SetRenderCustomDepth(true);
-
-	controller->Possess(CurrentPlayer);
-	CurrentPlayerID = (CurrentPlayerID == 1 ? 2 : 1);
-
-	controller->SetViewTarget(m_gameCamera);
-
-	TArray<AActor*> tempActorsArray;
-	CurrentPlayer->GetOverlappingActors(tempActorsArray, TSubclassOf<ACameraViewSetArea>());
-
-	if (tempActorsArray.Num() > 0)
-	{
-		ACameraViewSetArea* tempCameraArea = Cast<ACameraViewSetArea>(tempActorsArray[0]);
-
-
-		for (int32 b = 0; b < tempActorsArray.Num(); b++)
+		if (CurrentPlayer)
 		{
-			ACameraViewSetArea* tempCameraArea = Cast<ACameraViewSetArea>(tempActorsArray[b]);
+			ASaaya_UE4Character* CurrentCharacter = Cast<ASaaya_UE4Character>(CurrentPlayer);
+			CurrentCharacter->GetMesh()->SetRenderCustomDepth(false);
+		}
 
-			if (tempCameraArea)
+		CurrentPlayer = (CurrentPlayerID == 1 ? m_player1 : m_player2);
+
+		CurrentCharacter = Cast<ASaaya_UE4Character>(CurrentPlayer);
+		if (CurrentCharacter)
+			CurrentCharacter->GetMesh()->SetRenderCustomDepth(true);
+
+		controller->Possess(CurrentPlayer);
+		CurrentPlayerID = (CurrentPlayerID == 1 ? 2 : 1);
+
+		controller->SetViewTarget(m_gameCamera);
+
+		TArray<AActor*> tempActorsArray;
+		CurrentPlayer->GetOverlappingActors(tempActorsArray, TSubclassOf<ACameraViewSetArea>());
+
+		if (tempActorsArray.Num() > 0)
+		{
+			ACameraViewSetArea* tempCameraArea = Cast<ACameraViewSetArea>(tempActorsArray[0]);
+
+
+			for (int32 b = 0; b < tempActorsArray.Num(); b++)
 			{
-				AGameManager::MoveCameraTo(tempCameraArea->CameraHandle);
-				break;
+				ACameraViewSetArea* tempCameraArea = Cast<ACameraViewSetArea>(tempActorsArray[b]);
+
+				if (tempCameraArea)
+				{
+					AGameManager::MoveCameraTo(tempCameraArea->CameraHandle);
+					break;
+				}
 			}
 		}
 	}
